@@ -23,9 +23,13 @@ if __name__ == '__main__':
     #extract the bytestream from our input file
     data = extract_infos(args.FILE)
 
+    #extract some features from the bytestream
     pe_features = map(lambda x:data[x], features)
 
+    # feeding the features to our trained model
     res= clf.predict([pe_features])[0]
+
+    #printing the classification to the command line
     print('The file %s is %s' % (
         os.path.basename(sys.argv[1]),
         ['malicious', 'legitimate'][res])
